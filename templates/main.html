@@ -1,6 +1,9 @@
 <form method="post">
-    <input>
-    <button type="submit"></submit>
+    {% for message in messagey %}
+    <p>{{message}}</p>
+    {% endfor %}
+    <input type="text" name="message">
+    <button type="submit">Submit</button>
 
 
 </form>
