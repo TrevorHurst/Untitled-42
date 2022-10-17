@@ -8,7 +8,8 @@ app = Flask(__name__)
 @app.route("/", methods=['GET','POST'])
 def hello_world():
     if request.method == "POST":
-        messages.append(request.form['message'])
+        ip = request.remote_addr
+        messages.append(f"{ip}> {request.form['message']}")
         return render_template('main.html',messagey = messages)
     else:
         return render_template('main.html',messagey = messages)
