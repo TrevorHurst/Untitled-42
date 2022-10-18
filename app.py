@@ -10,10 +10,11 @@ app = Flask(__name__)
 def hello_world():
     if request.method == "POST":
         ip = request.remote_addr
-        messages.append(f"{ip}> {request.form['message']}")
+        messages.insert(0, f"{ip}> {request.form['message']}")
+        messages = messages[:10]
         return redirect('/')
     else:
-        return render_template('main.html',messagey = messages)
+        return render_template('main.html',messagey = messages[::-1])
 
 
 if __name__ == "__main__":
