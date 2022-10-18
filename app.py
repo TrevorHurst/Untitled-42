@@ -8,6 +8,7 @@ messages = []
 app = Flask(__name__)
 @app.route("/", methods=['GET','POST'])
 def hello_world():
+    global messages
     if request.method == "POST":
         ip = request.remote_addr
         messages.insert(0, f"{ip}> {request.form['message']}")
