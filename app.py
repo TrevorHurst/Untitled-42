@@ -1,23 +1,28 @@
-from flask import Flask
+import os
+from flask import Flask, send_from_directory
 from flask import request
 from flask import redirect
 from flask import render_template
+from flask_socketio import SocketIO, send
 
 messages = []
 
 app = Flask(__name__)
-@app.route("/", methods=['GET','POST'])
-def hello_world():
-    global messages
-    if request.method == "POST":
-        ip = request.remote_addr
-        messages.insert(0, f"{ip}> {request.form['message']}")
-        messages = messages[:10]
-        return redirect('/')
-    else:
-        return render_template('main.html',messagey = messages[::-1])
+app.config['SECRET'] = "Secret123"
+socketio = SocketIO(app, cors_allowed_origins="*")
 
+@app.route('/troll.ico')
+def icon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'troll.ico', mimetype='image/vnd.microsoft.ico')
 
-if __name__ == "__main__":
-    import os
-    os.system("sh run.sh")
+@socketio.on('message')
+def handle_message(message):
+    print(f"Recieved: {message}")
+    send(message, broadcast=True)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+if __name__=='__main__':
+    socketio.run(app, host='localhost')
