@@ -8,7 +8,7 @@ $(document).ready(function() {
     socket.on('message', function(data) {
 
         $('#messages').append($('<p>').text("> " + data));
-        setTimeout(makeMsgVisible, 1);
+        setTimeout(makeMsgVisible, 50);
     });
 
     $('#sendBtn').on('click', function() {
@@ -30,8 +30,7 @@ function sendMsg(socket) {
 }
 
 function toggleDark() {
-    console.log('test')
-    $('body').toggleClass('dark')
+    $('body').toggleClass('dark');
 }
 
 function makeMsgVisible() {
