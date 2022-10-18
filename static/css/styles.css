@@ -1,0 +1,116 @@
+:root {
+    --switch-size: default;
+    --switch-width: 2.5em;
+    --animation-time: 200ms;
+}
+
+.switch input[type="checkbox"] {
+    position: absolute;
+    left: -90000%;
+    top: -900000%;
+}
+
+.switch input[type="checkbox"] + label {
+    position: relative;
+    align-items: center;
+    display: flex;
+    user-select: none;
+    font-size: var(--switch-size);
+    cursor: pointer;
+    width: fit-content;
+}
+
+.switch input[type="checkbox"] + label:before {
+    content: '';
+    background-color: rgba(95, 95, 95, 0.26);
+    width: var(--switch-width);
+    height: 1em;
+    border-radius: 2em;
+    transition: background-color var(--animation-time);
+}
+
+.switch input[type="checkbox"]:checked + label:before {
+    background-color: rgba(129, 199, 224, 0.685);
+    transition: background-color var(--animation-time);
+}
+
+.switch input[type="checkbox"] + label:after {
+    position: absolute;
+    content: '';
+    background-color: white;
+    width: 1.1em;
+    height: 1.1em;
+    border-radius: 2em;
+    left: 0;
+    box-shadow: black 0 0 0.2em;
+    animation: toggle-off var(--animation-time) forwards ease-in-out;
+    transition: background-color var(--animation-time);
+}
+
+.switch input[type="checkbox"]:checked + label:after {
+    background-color: rgba(0, 42, 158, 0.801);
+    animation: toggle-on var(--animation-time) forwards ease-in-out;
+    transition: background-color var(--animation-time);
+}
+
+@keyframes toggle-on {
+    100%{
+        transform: translateX(calc(var(--switch-width) - 100%));
+    }
+    
+}
+
+@keyframes toggle-off {
+    0%{
+        transform: translateX(calc(var(--switch-width) - 100%));
+    }
+    100%{
+        transform: translateX(0);
+    }
+    
+}
+
+#messages{
+    width: 30em;
+    height: 50vh;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+
+#messages p::first-letter {
+    padding-left: 0.2em;
+    color: rgb(208, 73, 73);
+    font-style: bold;
+}
+
+#messages p {
+    vertical-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    opacity: 0;
+}
+
+#messages p.visible {
+    opacity: 100%;
+    transition: opacity 0.75s ease;
+}
+
+body {
+    transition: all 0.3s ease;
+}
+
+body.dark {
+    background-color: rgb(53,54,58);
+}
+
+.dark #messages p, .dark #dark-mode-label {
+    color: lime;
+}
+
+#msg-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}

@@ -15,6 +15,14 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 def icon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'troll.ico', mimetype='image/vnd.microsoft.ico')
 
+@app.route('/css/styles.css')
+def styles():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'css/styles.css')
+
+@app.route('/js/app.js')
+def js():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'js/app.js')
+
 @socketio.on('message')
 def handle_message(message):
     print(f"Recieved: {message}")
