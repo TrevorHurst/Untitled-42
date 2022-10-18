@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from flask import redirect
 from flask import render_template
 
 messages = []
@@ -10,7 +11,7 @@ def hello_world():
     if request.method == "POST":
         ip = request.remote_addr
         messages.append(f"{ip}> {request.form['message']}")
-        return render_template('main.html',messagey = messages)
+        return redirect('/')
     else:
         return render_template('main.html',messagey = messages)
 
