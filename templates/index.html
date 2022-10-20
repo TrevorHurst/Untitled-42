@@ -7,13 +7,13 @@
         <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js" integrity="sha512-iWPnCISAd/J+ZacwV2mbNLCaPGRrRo5OS81lKTVPtRg1wGTC20Cfmp5Us5RcbLv42QLdbAWl0MI57yox5VecQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="{{url_for('static',filename='js/app.js')}}"></script>
+        <script src="{{url_for('static',filename='js/app.js')}}"></script> 
     </head>
     <body class="dark">
         <div id="msg-wrapper">
             <div id="messages"></div>
             <div id="form-wrapper">
-                <input type="text" id="message", placeholder="Message">
+                <input type="text" id="message", placeholder="Message" autocomplete="off">
                 <button id="sendBtn">Send</button>
             </div>
         </div>

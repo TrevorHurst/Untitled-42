@@ -1,14 +1,13 @@
 $(document).ready(function() {
-    var socket = io.connect("http://localhost:5000")
+    var socket = io.connect("http://172.16.156.139:5000")
 
     socket.on('connect', function() {
         socket.send("User connected!");
     });
 
     socket.on('message', function(data) {
-
         $('#messages').append($('<p>').text("> " + data));
-        setTimeout(makeMsgVisible, 50);
+        setTimeout(makeMsgVisible, 1);
     });
 
     $('#sendBtn').on('click', function() {
